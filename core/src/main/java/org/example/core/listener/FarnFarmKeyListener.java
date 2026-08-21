@@ -1,6 +1,5 @@
 package org.example.core.listener;
 
-import net.labymod.api.client.key.Key;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.client.input.KeyEvent;
 import org.example.core.ExampleAddon;
@@ -16,11 +15,11 @@ public class FarnFarmKeyListener {
 
   @Subscribe
   public void onKey(KeyEvent event) {
-    if (event.key() != Key.P) {
+    if (!"P".equalsIgnoreCase(event.key().toString())) {
       return;
     }
 
-    if (!event.action().toString().equalsIgnoreCase("PRESS")) {
+    if (!"PRESS".equalsIgnoreCase(event.action().toString())) {
       return;
     }
 
