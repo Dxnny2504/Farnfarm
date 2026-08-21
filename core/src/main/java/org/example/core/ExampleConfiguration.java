@@ -2,9 +2,9 @@ package org.example.core;
 
 import net.labymod.api.addon.AddonConfig;
 import net.labymod.api.client.key.Key;
-import net.labymod.api.client.gui.screen.widget.widgets.input.KeyBindWidget.KeyBindSetting;
 import net.labymod.api.configuration.loader.annotation.ConfigName;
 import net.labymod.api.configuration.loader.property.ConfigProperty;
+import net.labymod.api.configuration.settings.annotation.types.KeyBindSetting;
 
 @ConfigName("settings")
 public class ExampleConfiguration extends AddonConfig {
