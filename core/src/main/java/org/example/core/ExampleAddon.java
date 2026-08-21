@@ -2,8 +2,6 @@ package org.example.core;
 
 import net.labymod.api.addon.LabyAddon;
 import net.labymod.api.models.addon.annotation.AddonMain;
-import org.example.core.commands.ExamplePingCommand;
-import org.example.core.listener.ExampleGameTickListener;
 import org.example.core.listener.FarnFarmKeyListener;
 
 @AddonMain
@@ -12,12 +10,9 @@ public class ExampleAddon extends LabyAddon<ExampleConfiguration> {
   @Override
   protected void enable() {
     this.registerSettingCategory();
-
-    this.registerListener(new ExampleGameTickListener(this));
     this.registerListener(new FarnFarmKeyListener(this));
-    this.registerCommand(new ExamplePingCommand());
 
-    this.logger().info("Enabled the Addon");
+    this.logger().info("FarnHelfer wurde geladen!");
   }
 
   @Override
