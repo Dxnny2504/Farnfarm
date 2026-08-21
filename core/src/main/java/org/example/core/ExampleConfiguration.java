@@ -1,32 +1,28 @@
-package org.example.core.listener;
+package org.example.core;
 
-import net.labymod.api.event.Phase;
-import net.labymod.api.event.Subscribe;
-import net.labymod.api.event.client.lifecycle.GameTickEvent;
-import org.example.core.ExampleAddon;
+import net.labymod.api.addon.AddonConfig;
+import net.labymod.api.client.key.Key;
+import net.labymod.api.configuration.loader.property.ConfigProperty;
+import net.labymod.api.configuration.settings.annotation.Setting;
+import net.labymod.api.configuration.settings.annotation.SettingSection;
+import net.labymod.api.configuration.settings.annotation.types.KeyBindSetting;
+import net.labymod.api.configuration.settings.annotation.types.SwitchSetting;
 
-public class ExampleGameTickListener {
+public class ExampleConfiguration extends AddonConfig {
 
-  private final ExampleAddon addon;
+  @SwitchSetting
+  private final ConfigProperty<Boolean> enabled = new ConfigProperty<>(true);
 
-  private boolean lastKeyState = false;
+  @SettingSection("farnfarm")
+  @KeyBindSetting
+  private final ConfigProperty<Key> toggleKey = new ConfigProperty<>(Key.Semicolon);
 
-  public ExampleGameTickListener(ExampleAddon addon) {
-    this.addon = addon;
+  @Override
+  public ConfigProperty<Boolean> enabled() {
+    return this.enabled;
   }
 
-  @Subscribe
-  public void onGameTick(GameTickEvent event) {
-    if (event.phase() != Phase.PRE) {
-      return;
-    }
-
-    boolean keyPressed = this.addon.isÄKeyPressed();
-
-    if (keyPressed && !this.lastKeyState) {
-      this.addon.toggleFarm();
-    }
-
-    this.lastKeyState = keyPressed;
+  public ConfigProperty<Key> toggleKey() {
+    return this.toggleKey;
   }
 }
