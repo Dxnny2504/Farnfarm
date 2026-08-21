@@ -1,7 +1,8 @@
 package org.example.core.listener;
 
+import net.labymod.api.client.key.Key;
 import net.labymod.api.event.Subscribe;
-import net.labymod.api.event.client.lifecycle.GameTickEvent;
+import net.labymod.api.event.client.input.KeyEvent;
 import org.example.core.ExampleAddon;
 
 public class FarnFarmKeyListener {
@@ -14,10 +15,16 @@ public class FarnFarmKeyListener {
   }
 
   @Subscribe
-  public void onGameTick(GameTickEvent event) {
-    if (!this.active) {
+  public void onKey(KeyEvent event) {
+    if (event.key() != Key.P) {
       return;
     }
+
+    if (!event.action().toString().equalsIgnoreCase("PRESS")) {
+      return;
+    }
+
+    this.toggle();
   }
 
   public boolean isActive() {
@@ -28,7 +35,9 @@ public class FarnFarmKeyListener {
     this.active = !this.active;
 
     this.addon.logger().info(
-        this.active ? "FarnFarm aktiviert" : "FarnFarm deaktiviert"
+        this.active
+            ? "FarnHelfer aktiviert"
+            : "FarnHelfer deaktiviert"
     );
   }
 }
