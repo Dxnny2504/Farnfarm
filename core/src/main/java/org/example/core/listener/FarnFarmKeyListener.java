@@ -11,7 +11,7 @@ public class FarnFarmKeyListener {
 
   public FarnFarmKeyListener(ExampleAddon addon) {
     this.addon = addon;
-  }
+  }  
 
   @Subscribe
   public void onKey(KeyEvent event) {
