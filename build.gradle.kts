@@ -23,10 +23,10 @@ labyMod {
     }
 
     addonInfo {
-        namespace = "example"
-        displayName = "ExampleAddon"
-        author = "Example Author"
-        description = "Example Description"
+        namespace = "farnhelfer"
+        displayName = "Farnhelfer"
+        author = "Dxnny858"
+        description = "Schnelles farmen von Farnen."
         minecraftVersion = "*"
         version = rootProject.version.toString()
     }
