@@ -9,5 +9,6 @@ public class ApiTest {
   @Subscribe
   public void onKey(KeyEvent event) {
     Key key = event.key();
+    var action = event.action();
   }
 }
