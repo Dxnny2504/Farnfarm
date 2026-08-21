@@ -16,13 +16,13 @@ public class FarnFarmKeyListener {
 
   @Subscribe
   public void onKey(KeyEvent event) {
-    Key key = event.key();
-
-    if (key != Key.Semicolon) {
+    if (event.key() != Key.Semicolon) {
       return;
     }
 
-    this.addon.logger().info("Ä Taste erkannt");
+    if (event.action().toString().equalsIgnoreCase("PRESS")) {
+      this.toggle();
+    }
   }
 
   public boolean isActive() {
