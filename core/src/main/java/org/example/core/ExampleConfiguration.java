@@ -1,18 +1,32 @@
-package org.example.core;
+package org.example.core.listener;
 
-import net.labymod.api.addon.AddonConfig;
-import net.labymod.api.client.gui.screen.widget.widgets.input.SwitchWidget.SwitchSetting;
-import net.labymod.api.configuration.loader.annotation.ConfigName;
-import net.labymod.api.configuration.loader.property.ConfigProperty;
+import net.labymod.api.event.Phase;
+import net.labymod.api.event.Subscribe;
+import net.labymod.api.event.client.lifecycle.GameTickEvent;
+import org.example.core.ExampleAddon;
 
-@ConfigName("settings")
-public class ExampleConfiguration extends AddonConfig {
+public class ExampleGameTickListener {
 
-  @SwitchSetting
-  private final ConfigProperty<Boolean> enabled = new ConfigProperty<>(true);
+  private final ExampleAddon addon;
 
-  @Override
-  public ConfigProperty<Boolean> enabled() {
-    return this.enabled;
+  private boolean lastKeyState = false;
+
+  public ExampleGameTickListener(ExampleAddon addon) {
+    this.addon = addon;
+  }
+
+  @Subscribe
+  public void onGameTick(GameTickEvent event) {
+    if (event.phase() != Phase.PRE) {
+      return;
+    }
+
+    boolean keyPressed = this.addon.isÄKeyPressed();
+
+    if (keyPressed && !this.lastKeyState) {
+      this.addon.toggleFarm();
+    }
+
+    this.lastKeyState = keyPressed;
   }
 }
