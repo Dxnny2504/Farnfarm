@@ -1,7 +1,7 @@
 package org.example.core.listener;
 
 import net.labymod.api.event.Subscribe;
-import net.labymod.api.event.client.input.KeyEvent;
+import net.labymod.api.event.client.lifecycle.GameTickEvent;
 import org.example.core.ExampleAddon;
 
 public class FarnFarmKeyListener {
@@ -11,19 +11,13 @@ public class FarnFarmKeyListener {
 
   public FarnFarmKeyListener(ExampleAddon addon) {
     this.addon = addon;
-  }  
+  }
 
   @Subscribe
-  public void onKey(KeyEvent event) {
-    if (!"P".equalsIgnoreCase(event.key().toString())) {
+  public void onGameTick(GameTickEvent event) {
+    if (!this.active) {
       return;
     }
-
-    if (!"PRESS".equalsIgnoreCase(event.action().toString())) {
-      return;
-    }
-
-    this.toggle();
   }
 
   public boolean isActive() {
