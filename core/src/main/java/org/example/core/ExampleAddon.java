@@ -2,20 +2,31 @@ package org.example.core;
 
 import net.labymod.api.addon.LabyAddon;
 import net.labymod.api.models.addon.annotation.AddonMain;
-import org.example.core.commands.ExamplePingCommand;
-import org.example.core.listener.ExampleGameTickListener;
 
 @AddonMain
 public class ExampleAddon extends LabyAddon<ExampleConfiguration> {
+
+  private boolean farmEnabled = false;
 
   @Override
   protected void enable() {
     this.registerSettingCategory();
 
-    this.registerListener(new ExampleGameTickListener(this));
-    this.registerCommand(new ExamplePingCommand());
+    this.logger().info("FarnFarm wurde geladen!");
+  }
 
-    this.logger().info("Enabled the Addon");
+  public boolean isFarmEnabled() {
+    return this.farmEnabled;
+  }
+
+  public void toggleFarm() {
+    this.farmEnabled = !this.farmEnabled;
+
+    if (this.farmEnabled) {
+      this.logger().info("FarnFarm aktiviert!");
+    } else {
+      this.logger().info("FarnFarm deaktiviert!");
+    }
   }
 
   @Override
