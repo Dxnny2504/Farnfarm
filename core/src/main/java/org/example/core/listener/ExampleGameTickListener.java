@@ -18,7 +18,5 @@ public class ExampleGameTickListener {
     if (event.phase() != Phase.PRE) {
       return;
     }
-
-    this.addon.logger().info(this.addon.configuration().enabled().get() ? "enabled" : "disabled");
   }
 }
