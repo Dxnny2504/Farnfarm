@@ -1,8 +1,8 @@
 package org.example.core.listener;
 
-import net.labymod.api.event.Phase;
+import net.labymod.api.client.key.Key;
 import net.labymod.api.event.Subscribe;
-import net.labymod.api.event.client.lifecycle.GameTickEvent;
+import net.labymod.api.event.client.input.KeyEvent;
 import org.example.core.ExampleAddon;
 
 public class FarnFarmKeyListener {
@@ -15,14 +15,16 @@ public class FarnFarmKeyListener {
   }
 
   @Subscribe
-  public void onGameTick(GameTickEvent event) {
-    if (event.phase() != Phase.PRE) {
+  public void onKeyEvent(KeyEvent event) {
+    if (event.key() != Key.Semicolon) {
       return;
     }
 
-    if (!this.active) {
+    if (!event.action().isPress()) {
       return;
     }
+
+    this.toggle();
   }
 
   public boolean isActive() {
