@@ -1,5 +1,8 @@
 package org.example.core.listener;
 
+import net.labymod.api.client.component.Component;
+import net.labymod.api.client.component.format.NamedTextColor;
+import net.labymod.api.client.chat.ChatMessage;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.client.input.KeyEvent;
 import org.example.core.ExampleAddon;
@@ -29,10 +32,10 @@ public class FarnFarmKeyListener {
   public void toggle() {
     this.active = !this.active;
 
-    this.addon.logger().info(
-        this.active
-            ? "FarnHelfer aktiviert"
-            : "FarnHelfer deaktiviert"
-    );
+    if (this.active) {
+      this.addon.logger().info("FarnHelfer aktiviert");
+    } else {
+      this.addon.logger().info("FarnHelfer deaktiviert");
+    }
   }
 }
