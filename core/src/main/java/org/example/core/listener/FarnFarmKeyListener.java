@@ -19,10 +19,6 @@ public class FarnFarmKeyListener {
       return;
     }
 
-    if (!"PRESS".equalsIgnoreCase(event.action().toString())) {
-      return;
-    }
-
     this.toggle();
   }
 
